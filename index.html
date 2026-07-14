@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ammarai Healthcare | Layanan Kesehatan Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -37,7 +37,12 @@
     </script>
     
     <style>
-        body { -webkit-font-smoothing: antialiased; }
+        /* KUNCIAN ANTI-GESER UNTUK MOBILE */
+        html, body {
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            -webkit-font-smoothing: antialiased;
+        }
         
         .glass-nav {
             background: rgba(255, 255, 255, 0.9);
@@ -126,739 +131,747 @@
             visibility: hidden;
             transform: translateY(10px) translateX(-50%);
             transition: all 0.3s ease;
+            pointer-events: none; /* Mencegah tooltip menangkap klik/scroll liar */
         }
         .group:hover .testi-tooltip {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) translateX(-50%);
+            pointer-events: auto;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans overflow-x-hidden">
+<body class="bg-slate-50 text-slate-800 font-sans overflow-x-hidden w-full relative max-w-[100vw]">
 
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
-                    <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                        <i class="fa-solid fa-notes-medical"></i>
-                    </div>
-                    <span class="font-serif font-bold text-2xl text-brand-900 tracking-tight">Ammarai<span class="text-brand-600">.</span></span>
-                </div>
+    <!-- WRAPPER UTAMA (Layer ekstra untuk mengunci layout mobile) -->
+    <div class="w-full overflow-x-hidden relative">
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <button onclick="navigate('home')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Beranda</button>
-                    <button onclick="navigate('home', 'layanan')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Layanan</button>
-                    <button onclick="navigate('about')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Tentang Kami</button>
-                    <button onclick="navigate('home', 'testimoni')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Testimoni</button>
-                    <button onclick="navigate('home', 'kontak')" class="px-6 py-2.5 rounded-full btn-gradient text-white text-sm font-medium shadow-md">
-                        Hubungi Kami
-                    </button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-900 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <button onclick="navigate('home')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Beranda</button>
-                <button onclick="navigate('home', 'layanan')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Layanan</button>
-                <button onclick="navigate('about')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Tentang Kami</button>
-                <button onclick="navigate('home', 'testimoni')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Testimoni</button>
-                <button onclick="navigate('home', 'kontak')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-600 hover:bg-slate-50 rounded-md">Hubungi Kami</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MAIN HOME VIEW -->
-    <div id="view-home" class="page-view active">
-        
-        <!-- Hero Section -->
-        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-brand-100 opacity-40 blur-[80px] pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] rounded-full bg-blue-100 opacity-40 blur-[80px] pointer-events-none"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="fade-up">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-brand-100 text-brand-600 text-sm font-medium mb-6 shadow-sm">
-                            <span class="relative flex h-2.5 w-2.5">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-600"></span>
-                            </span>
-                            Layanan Medis Premium 24/7
-                        </div>
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-brand-900 leading-[1.15] mb-6">
-                            Standar Perawatan <br/><span class="text-brand-600">Terbaik</span> di Tangan Anda.
-                        </h1>
-                        <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
-                            Ammarai menghadirkan pelayanan kesehatan komprehensif langsung ke rumah dan perusahaan Anda. Keamanan, kenyamanan, dan kualitas hidup adalah prioritas utama kami.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <button onclick="navigate('home', 'layanan')" class="px-8 py-4 rounded-full btn-gradient text-white font-medium shadow-floating flex items-center gap-2">
-                                Eksplorasi Layanan <i class="fa-solid fa-arrow-right text-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="relative fade-up" style="transition-delay: 0.2s;">
-                        <div class="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3] bg-slate-200 border-8 border-white">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Doctor consulting" class="object-cover w-full h-full">
-                            <div class="absolute inset-0 bg-gradient-to-t from-brand-900/40 to-transparent"></div>
-                        </div>
-                        
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-8 -left-8 bg-white p-5 rounded-2xl shadow-premium flex items-center gap-4 animate-bounce" style="animation-duration: 4s;">
-                            <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-user-doctor"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-slate-800">Tenaga Medis</p>
-                                <p class="text-xs text-slate-500 font-medium">Profesional & Tersertifikasi</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Kenapa Harus Ammarai Section -->
-        <section class="py-24 bg-white relative">
+        <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="relative fade-up order-2 lg:order-1">
-                        <div class="relative rounded-[2rem] overflow-hidden shadow-premium aspect-[4/5]">
-                            <img src="https://img.magnific.com/free-photo/young-female-professional-doctor-physician-consulting-patient-talking-adult-man-client-medical-checkup-visit-diseases-treatment-medical-health-care-concept_657921-855.jpg?semt=ais_hybrid&w=740&q=80" alt="Medical discussion" class="object-cover w-full h-full">
-                            <div class="absolute inset-0 bg-brand-900/20 mix-blend-multiply"></div>
-                        </div>
-                        <div class="absolute top-10 -right-10 bg-white p-6 rounded-2xl shadow-premium hidden lg:block">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-heart-pulse"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800">Perawatan Penuh Kasih</h4>
-                                    <p class="text-sm text-slate-500">Dedikasi sepenuh hati</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fade-up order-1 lg:order-2">
-                        <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Keunggulan Kami</h2>
-                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-6 leading-tight">Kenapa Harus Memilih Ammarai Healthcare?</h3>
-                        <p class="text-slate-600 text-lg mb-10 leading-relaxed">Kami memahami bahwa kesehatan dan kenyamanan keluarga adalah segalanya. Berikut alasan mengapa layanan kami adalah pilihan tepat:</p>
-                        
-                        <ul class="space-y-6">
-                            <li class="flex items-start gap-4">
-                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
-                                    <i class="fa-solid fa-check text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-1">Efisiensi Biaya</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">Biaya perawatan menjadi lebih efisien dengan opsi pasien dirawat di rumah (home care).</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
-                                    <i class="fa-solid fa-check text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-1">Perencanaan Perawatan Efektif</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">Perawatan lebih efektif berkat perencanaan yang baik dibantu oleh konsultan profesional berpengalaman.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
-                                    <i class="fa-solid fa-check text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-1">Keleluasaan Waktu Keluarga</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">Efisiensi waktu keluarga; kunjungan mendampingi pasien menjadi jauh lebih leluasa dan fleksibel.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
-                                    <i class="fa-solid fa-check text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-1">Pemantauan Pasien Mudah</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">Mempermudah keluarga memantau perkembangan perawatan pasien secara langsung setiap saat.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
-                                    <i class="fa-solid fa-check text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-1">Dukungan Psikologis Optimal</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">Mempererat hubungan keluarga yang diharapkan mampu meningkatkan semangat dan motivasi kesembuhan pasien.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Layanan Section -->
-        <section id="layanan" class="py-24 bg-slate-50 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
-                    <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Fasilitas Kami</h2>
-                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Layanan Kesehatan Terpadu</h3>
-                    <p class="text-slate-600 text-lg">Solusi medis komprehensif dengan tenaga ahli dan peralatan modern, langsung ke hadapan Anda.</p>
-                </div>
-
-                <!-- 12 Services Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    
-                    <!-- Service 1 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80" alt="Home Care" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-house-medical"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Home Care</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Perawatan medis intensif dan pendampingan di kenyamanan rumah Anda oleh perawat bersertifikat.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.1s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?auto=format&fit=crop&w=600&q=80" alt="Ambulance Services" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-truck-medical"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Ambulance Services</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Layanan gawat darurat dan transport medis representatif untuk domestik maupun internasional.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.2s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?auto=format&fit=crop&w=600&q=80" alt="Alat Kesehatan" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-stethoscope"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Alat Kesehatan</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Fasilitas pembelian dan penyewaan alat kesehatan modern berstandar rumah sakit untuk di rumah.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 4 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.3s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Dokter Visit" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-user-doctor"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Dokter Visit</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Kunjungan dokter (Umum & Spesialis) ke rumah untuk diagnosis presisi tanpa perlu antre di faskes.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 5 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80" alt="Laboratorium" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-flask"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Laboratorium</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Pengambilan sampel darah dan tes diagnostik langsung di rumah dengan hasil cepat & akurat.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 6 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.1s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80" alt="Apotik" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-pills"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Apotik & Obat</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Penebusan resep dan kebutuhan farmasi dengan fasilitas antar instan langsung ke rumah Anda.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 7 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.2s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Telemedicine" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-laptop-medical"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Telemedicine</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Konsultasi jarak jauh interaktif dengan dokter umum dan spesialis terpercaya via video call.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 8 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.3s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=600&q=80" alt="Medivac" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-helicopter"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Medical Evacuation</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Evakuasi medis udara & darat (Medivac) berstandar tinggi untuk rute domestik maupun internasional.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 9 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80" alt="MCU" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-file-medical"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">MCU</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Medical Check-Up komprehensif yang dirancang khusus untuk perorangan maupun paket perusahaan.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 10 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.1s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=600&q=80" alt="Multivitamin" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-syringe"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Multivitamin Booster</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Terapi infus multivitamin dan peningkat imun untuk vitalitas tubuh, langsung di rumah Anda.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 11 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.2s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" alt="Rujukan RS" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-hospital-user"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Rujukan RS</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Asistensi administrasi dan rujukan cepat ke dokter/rumah sakit rujukan domestik dan internasional.</p>
-                        </div>
-                    </div>
-
-                    <!-- Service 12 -->
-                    <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.3s;">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80" alt="Healthy Food" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
-                                <i class="fa-solid fa-apple-whole"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-bold text-brand-900 mb-2">Healthy Food</h4>
-                            <p class="text-sm text-slate-600 leading-relaxed">Penyediaan katering nutrisi diet klinis dan makanan sehat yang disesuaikan kondisi medis pasien.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Mitra Kami Section (Marquee) -->
-        <section class="py-16 bg-white border-y border-slate-100 overflow-hidden fade-up">
-            <div class="text-center max-w-3xl mx-auto mb-10">
-                <h3 class="font-serif text-2xl md:text-3xl font-bold text-brand-900">Dipercaya Oleh Berbagai Perusahaan</h3>
-            </div>
-            
-            <div class="marquee-wrapper max-w-7xl mx-auto">
-                <div class="marquee-content flex items-center">
-                    <!-- Original Set of Logos -->
-                    <div class="flex items-center gap-16 px-8">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Jasa_Marga_logo.svg/512px-Jasa_Marga_logo.svg.png" alt="Jasa Marga" class="h-12 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                        <!-- Using clean text placeholders with styles for logos without easy raw SVG links -->
-                        <div class="text-2xl font-black tracking-tighter text-slate-400 hover:text-blue-700 transition-colors cursor-default">FULLERTON</div>
-                        <div class="text-2xl font-bold italic text-slate-400 hover:text-red-600 transition-colors cursor-default">FIF<span class="font-light">GROUP</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-shield-cat"></i> INSURE<span class="font-light">CORP</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-building-columns"></i> MEGA<span class="font-light">BANK</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-oil-well"></i> PETRO<span class="font-light">NUSA</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-plane-departure"></i> AERO<span class="font-light">LINE</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-truck-fast"></i> LOGISTIK<span class="font-light">PRO</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-microchip"></i> TECH<span class="font-light">INDO</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-leaf"></i> AGRO<span class="font-light">MAKMUR</span></div>
-                    </div>
-                    <!-- Duplicated Set for Seamless Infinite Scroll -->
-                    <div class="flex items-center gap-16 px-8">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Jasa_Marga_logo.svg/512px-Jasa_Marga_logo.svg.png" alt="Jasa Marga" class="h-12 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                        <div class="text-2xl font-black tracking-tighter text-slate-400 hover:text-blue-700 transition-colors cursor-default">FULLERTON</div>
-                        <div class="text-2xl font-bold italic text-slate-400 hover:text-red-600 transition-colors cursor-default">FIF<span class="font-light">GROUP</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-shield-cat"></i> INSURE<span class="font-light">CORP</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-building-columns"></i> MEGA<span class="font-light">BANK</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-oil-well"></i> PETRO<span class="font-light">NUSA</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-plane-departure"></i> AERO<span class="font-light">LINE</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-truck-fast"></i> LOGISTIK<span class="font-light">PRO</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-microchip"></i> TECH<span class="font-light">INDO</span></div>
-                        <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-leaf"></i> AGRO<span class="font-light">MAKMUR</span></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimoni Section -->
-        <section id="testimoni" class="py-24 bg-slate-50 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
-                    <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Kisah Nyata</h2>
-                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Apa Kata Klien Kami?</h3>
-                    <p class="text-slate-600 text-lg">Kepercayaan ribuan keluarga dan perusahaan menjadi motivasi kami memberikan yang terbaik.</p>
-                </div>
-
-                <!-- Videos -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 fade-up">
-                    <div class="rounded-2xl overflow-hidden shadow-premium aspect-video bg-slate-200 border-4 border-white">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/tiQ4hDrpnKM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    <div class="rounded-2xl overflow-hidden shadow-premium aspect-video bg-slate-200 border-4 border-white">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/YPh0l6Z2x1E?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <!-- Interactive Client Photos -->
-                <div class="flex flex-wrap justify-center gap-6 fade-up">
-                    
-                    <!-- Client 1 -->
-                    <div class="relative group cursor-pointer">
-                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" class="w-full h-full object-cover">
-                        </div>
-                        <!-- Tooltip -->
-                        <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
-                            <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-sm font-light italic leading-relaxed mb-3">"Layanan homecare Ammarai sangat membantu ibunda kami pasca stroke. Perawatnya sabar dan sangat ahli."</p>
-                            <p class="text-xs font-bold text-brand-100">- Bpk. Hendra, Jakarta</p>
-                            <!-- Triangle -->
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
-                        </div>
-                    </div>
-
-                    <!-- Client 2 -->
-                    <div class="relative group cursor-pointer">
-                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client 2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
-                            <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-sm font-light italic leading-relaxed mb-3">"Ambulans tiba sangat cepat. Fasilitas di dalamnya seperti mini ICU. Sangat merekomendasikan layanan evakuasi medisnya."</p>
-                            <p class="text-xs font-bold text-brand-100">- Ibu Sarah, Depok</p>
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
-                        </div>
-                    </div>
-
-                    <!-- Client 3 -->
-                    <div class="relative group cursor-pointer">
-                        <div class="w-24 h-24 -mt-2 rounded-full overflow-hidden border-4 border-brand-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10 relative">
-                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Client 3" class="w-full h-full object-cover">
-                            <div class="absolute bottom-0 right-0 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs"><i class="fa-solid fa-quote-right"></i></div>
-                        </div>
-                        <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
-                            <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-sm font-light italic leading-relaxed mb-3">"Telemedicine dengan dokter spesialis Ammarai sangat efektif. Resep obat langsung diantar ke rumah kurang dari 2 jam!"</p>
-                            <p class="text-xs font-bold text-brand-100">- drg. Anton, Bekasi</p>
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
-                        </div>
-                    </div>
-
-                    <!-- Client 4 -->
-                    <div class="relative group cursor-pointer">
-                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client 4" class="w-full h-full object-cover">
-                        </div>
-                        <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
-                            <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-sm font-light italic leading-relaxed mb-3">"Pesan Multivitamin Booster sebelum perjalanan bisnis luar negeri. Sangat praktis karena susternya yang datang ke apartemen."</p>
-                            <p class="text-xs font-bold text-brand-100">- Ibu Dina, Jaksel</p>
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
-                        </div>
-                    </div>
-
-                    <!-- Client 5 -->
-                    <div class="relative group cursor-pointer">
-                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
-                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Client 5" class="w-full h-full object-cover">
-                        </div>
-                        <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
-                            <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-sm font-light italic leading-relaxed mb-3">"Program MCU Corporate Ammarai untuk karyawan perusahaan kami berjalan mulus. Laporannya sangat komprehensif."</p>
-                            <p class="text-xs font-bold text-brand-100">- Bpk. Rizky, HR Manager</p>
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <p class="text-center text-sm text-slate-400 mt-6">*Arahkan kursor ke foto untuk melihat ulasan</p>
-            </div>
-        </section>
-
-        <!-- Kontak Section -->
-        <section id="kontak" class="py-24 bg-brand-900 relative">
-            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row fade-up">
-                    
-                    <!-- Info Section -->
-                    <div class="bg-brand-600 text-white p-10 lg:p-14 lg:w-2/5 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-serif text-3xl font-bold mb-4">Mari Berdiskusi</h3>
-                            <p class="text-brand-50 opacity-90 mb-10 leading-relaxed">Butuh bantuan medis mendesak atau ingin menjadwalkan layanan kami? Tim Ammarai siap membantu Anda 24/7.</p>
-                            
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <i class="fa-solid fa-location-dot mt-1 text-xl"></i>
-                                    <div>
-                                        <h4 class="font-bold text-sm">Head Office</h4>
-                                        <p class="text-sm opacity-90 mt-1">Talavera Office Park 28th Floor<br>Jl. TB Simatupang Kav. 22-26<br>Jakarta Selatan 12430</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <i class="fa-solid fa-phone mt-1 text-xl"></i>
-                                    <div>
-                                        <h4 class="font-bold text-sm">Telepon & Fax</h4>
-                                        <p class="text-sm opacity-90 mt-1">Telp: +62 21 7599 7994<br>Fax: +62 21 7599 9888</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <i class="fa-solid fa-headset mt-1 text-xl"></i>
-                                    <div>
-                                        <h4 class="font-bold text-sm">Care Center / WA</h4>
-                                        <p class="text-sm opacity-90 mt-1 font-bold">0878 8888 2018</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <i class="fa-solid fa-envelope mt-1 text-xl"></i>
-                                    <div>
-                                        <h4 class="font-bold text-sm">Email</h4>
-                                        <p class="text-sm opacity-90 mt-1">cs@ammarai.co.id</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Form Section -->
-                    <div class="p-10 lg:p-14 lg:w-3/5 bg-white">
-                        <h3 class="text-2xl font-bold text-brand-900 mb-6">Tulis Keluhan / Pesan</h3>
-                        
-                        <form action="https://formsubmit.co/cs@ammarai.co.id" method="POST" class="space-y-5">
-                            <input type="text" name="_honey" style="display:none">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="#"> 
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="Nama Anda">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Nomor Telepon / WA</label>
-                                    <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="0812...">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="email@contoh.com">
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Keluhan / Layanan yang dibutuhkan</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white resize-none" placeholder="Ceritakan keluhan atau kebutuhan medis Anda di sini..."></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg shadow-lg flex items-center justify-center gap-2">
-                                Kirim Pesan <i class="fa-solid fa-paper-plane text-sm"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </div>
-    <!-- END MAIN HOME VIEW -->
-
-    <!-- TENTANG KAMI VIEW (Hidden by default, triggered by JS) -->
-    <div id="view-about" class="page-view pt-32 pb-20 bg-slate-50 min-h-screen">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <button onclick="navigate('home')" class="mb-8 inline-flex items-center gap-2 text-slate-500 hover:text-brand-600 transition-colors font-medium">
-                <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
-            </button>
-
-            <!-- Company Profile -->
-            <div class="bg-white rounded-3xl shadow-premium p-8 md:p-12 mb-10">
-                <div class="text-center mb-10">
-                    <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-3xl mx-auto mb-4 shadow-inner">
-                        <i class="fa-solid fa-building-user"></i>
-                    </div>
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Tentang Ammarai</h2>
-                    <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
-                    <p><strong class="text-brand-900">PT Ammarai Titian Madani (Ammarai Healthcare Assistance)</strong> lahir dari filosofi bahwa rumah merupakan tempat pertama dan utama bagi keluarga dalam menjalani kehidupan yang bahagia. Kebahagiaan keluarga tidak akan tercapai jika kesehatan tidak terwujud di dalamnya.</p>
-                    <p>Berangkat dari hal tersebut, Ammarai Healthcare Assistance hadir sebagai mitra pelayanan kesehatan yang berupaya sejak dini memprioritaskan kondisi kesehatan terbaik bagi setiap anggota keluarga di rumah.</p>
-                    <p>Didirikan pada tanggal <strong>12 Desember 2012</strong>, Ammarai terus berbenah diri dan senantiasa mengembangkan pelayanan kesehatan yang lebih lengkap, responsif, solutif dan terjangkau.</p>
-                </div>
-            </div>
-
-            <!-- Visi, Misi, Komitmen Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <!-- Visi -->
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 text-center hover:shadow-premium transition-shadow">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4"><i class="fa-solid fa-eye"></i></div>
-                    <h3 class="font-bold text-brand-900 text-lg mb-3">Visi Kami</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">Menjadi perusahaan penyedia jasa pelayanan kesehatan yang terlengkap dan terkemuka se-Asia Tenggara.</p>
-                </div>
-                <!-- Misi -->
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 text-center hover:shadow-premium transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3 class="font-bold text-brand-900 text-lg mb-3">Misi Kami</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">Mengoptimalkan derajat kesehatan masyarakat semaksimal mungkin, dengan memegang teguh prinsip "TERJANGKAU dan BERKUALITAS". Menghubungkan pasien dengan institusi medis dengan MUDAH, CEPAT & TEPAT.</p>
-                </div>
-                <!-- Komitmen -->
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 text-center hover:shadow-premium transition-shadow">
-                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <h3 class="font-bold text-brand-900 text-lg mb-3">Komitmen</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">AMMARAI adalah wujud komitmen dalam memberikan jasa pendampingan kesehatan. Profesional, amanah, terjangkau, dan berkualitas adalah prinsip teguh manajemen kami.</p>
-                </div>
-            </div>
-
-            <!-- CEO Section -->
-            <div class="bg-brand-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row text-white">
-                <div class="md:w-1/3">
-                    <img src="https://static.wixstatic.com/media/a868ea_81c04afba7ed468fbb7fb76b68db2095~mv2.jpg/v1/fill/w_689,h_358,al_c,lg_1,q_80,enc_avif,quality_auto/CEO%20page.jpg" alt="CEO Profile" class="w-full h-full object-cover min-h-[300px]">
-                </div>
-                <div class="md:w-2/3 p-8 md:p-10 flex flex-col justify-center">
-                    <div class="flex text-brand-500 text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
-                    <h3 class="font-serif text-2xl font-bold mb-2">Pesan CEO</h3>
-                    <p class="text-slate-300 italic leading-relaxed mb-6">
-                        "Karena setiap keluarga berhak memperoleh layanan kesehatan yang tepat, cepat, berkualitas dan terpercaya yang dapat membuatnya merasa nyaman dalam mewujudkan kehidupan keluarga yang lebih baik. Ditangani para profesional di bidangnya, kami selalu berusaha bekerja dengan penuh dedikasi dan kasih sayang."
-                    </p>
-                    <div>
-                        <p class="font-bold text-lg">Direktur Utama / CEO</p>
-                        <p class="text-brand-500 text-sm">PT Ammarai Titian Madani</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- END TENTANG KAMI VIEW -->
-
-    <!-- Footer Global -->
-    <footer class="bg-brand-950 pt-16 pb-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
-                
-                <!-- Brand & Address -->
-                <div class="md:col-span-5">
-                    <div class="flex items-center gap-2 mb-6 cursor-pointer" onclick="navigate('home')">
-                        <div class="w-8 h-8 bg-brand-600 rounded flex items-center justify-center text-white font-bold text-sm">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
+                        <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
                             <i class="fa-solid fa-notes-medical"></i>
                         </div>
-                        <span class="font-serif font-bold text-2xl text-white tracking-tight">Ammarai<span class="text-brand-600">.</span></span>
+                        <span class="font-serif font-bold text-2xl text-brand-900 tracking-tight">Ammarai<span class="text-brand-600">.</span></span>
                     </div>
-                    
-                    <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-xs">PT Ammarai Titian Madani</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6 pr-4">
-                        Talavera Office Park 28th Floor<br>
-                        Jl. TB Simatupang No.Kav. 22 - 26, Cilandak Barat,<br>
-                        Kec. Cilandak, Kota Jakarta Selatan, Jakarta 12430
-                    </p>
-                    
-                    <div class="space-y-2 mb-6">
-                        <p class="text-slate-400 text-sm"><strong class="text-slate-300">Care Center:</strong> 0878 8888 2018</p>
-                        <p class="text-slate-400 text-sm"><strong class="text-slate-300">Telp:</strong> +62 21 7599 7994 | <strong class="text-slate-300">Fax:</strong> +62 21 7599 9888</p>
-                        <p class="text-slate-400 text-sm"><strong class="text-slate-300">Email:</strong> cs@ammarai.co.id</p>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <button onclick="navigate('home')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Beranda</button>
+                        <button onclick="navigate('home', 'layanan')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Layanan</button>
+                        <button onclick="navigate('about')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Tentang Kami</button>
+                        <button onclick="navigate('home', 'testimoni')" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Testimoni</button>
+                        <button onclick="navigate('home', 'kontak')" class="px-6 py-2.5 rounded-full btn-gradient text-white text-sm font-medium shadow-md">
+                            Hubungi Kami
+                        </button>
                     </div>
-                </div>
 
-                <!-- Links -->
-                <div class="md:col-span-2">
-                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Navigasi</h4>
-                    <ul class="space-y-3">
-                        <li><button onclick="navigate('home')" class="text-slate-400 hover:text-white transition-colors text-sm">Beranda</button></li>
-                        <li><button onclick="navigate('home', 'layanan')" class="text-slate-400 hover:text-white transition-colors text-sm">Layanan Medis</button></li>
-                        <li><button onclick="navigate('about')" class="text-slate-400 hover:text-white transition-colors text-sm">Tentang Kami</button></li>
-                        <li><button onclick="navigate('home', 'kontak')" class="text-slate-400 hover:text-white transition-colors text-sm">Hubungi Kami</button></li>
-                    </ul>
-                </div>
-
-                <!-- Google Maps Preview -->
-                <div class="md:col-span-5">
-                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Lokasi Kami</h4>
-                    <div class="w-full h-48 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-inner group relative">
-                        <!-- Embed Google Maps untuk Talavera Office Park -->
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.8153400582093!2d106.79796061476932!3d-6.287994095449272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1d063717df3%3A0x86134b121fb66f8e!2sTalavera%20Office%20Park!5e0!3m2!1sen!2sid!4v1689317520000!5m2!1sen!2sid" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="opacity-80 group-hover:opacity-100 transition-opacity">
-                        </iframe>
-                        
-                        <!-- Overlay Link Button (Untuk buka di app Map native) -->
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Talavera+Office+Park+Jakarta" target="_blank" class="absolute bottom-3 right-3 bg-brand-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg hover:bg-brand-500 transition-colors flex items-center gap-1">
-                            <i class="fa-solid fa-location-arrow"></i> Rute
-                        </a>
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-900 focus:outline-none">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm text-center md:text-left">
-                    &copy; 2024 PT Ammarai Titian Madani. All rights reserved.
-                </p>
-                <div class="flex gap-4 text-sm text-slate-500">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            <!-- Mobile Menu Panel -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl">
+                <div class="px-4 pt-2 pb-6 space-y-2">
+                    <button onclick="navigate('home')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Beranda</button>
+                    <button onclick="navigate('home', 'layanan')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Layanan</button>
+                    <button onclick="navigate('about')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Tentang Kami</button>
+                    <button onclick="navigate('home', 'testimoni')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-md">Testimoni</button>
+                    <button onclick="navigate('home', 'kontak')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-600 hover:bg-slate-50 rounded-md">Hubungi Kami</button>
                 </div>
+            </div>
+        </nav>
+
+        <!-- MAIN HOME VIEW -->
+        <div id="view-home" class="page-view active">
+            
+            <!-- Hero Section -->
+            <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-brand-100 opacity-40 blur-[80px] pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] rounded-full bg-blue-100 opacity-40 blur-[80px] pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="fade-up">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-brand-100 text-brand-600 text-sm font-medium mb-6 shadow-sm">
+                                <span class="relative flex h-2.5 w-2.5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-600"></span>
+                                </span>
+                                Layanan Medis Premium 24/7
+                            </div>
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-brand-900 leading-[1.15] mb-6">
+                                Standar Perawatan <br/><span class="text-brand-600">Terbaik</span> di Tangan Anda.
+                            </h1>
+                            <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Ammarai menghadirkan pelayanan kesehatan komprehensif langsung ke rumah dan perusahaan Anda. Keamanan, kenyamanan, dan kualitas hidup adalah prioritas utama kami.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button onclick="navigate('home', 'layanan')" class="px-8 py-4 rounded-full btn-gradient text-white font-medium shadow-floating flex items-center gap-2">
+                                    Eksplorasi Layanan <i class="fa-solid fa-arrow-right text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="relative fade-up" style="transition-delay: 0.2s;">
+                            <div class="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3] bg-slate-200 border-8 border-white">
+                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Doctor consulting" class="object-cover w-full h-full">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-900/40 to-transparent"></div>
+                            </div>
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-8 -left-8 bg-white p-5 rounded-2xl shadow-premium flex items-center gap-4 animate-bounce" style="animation-duration: 4s;">
+                                <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800">Tenaga Medis</p>
+                                    <p class="text-xs text-slate-500 font-medium">Profesional & Tersertifikasi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kenapa Harus Ammarai Section -->
+            <section class="py-24 bg-white relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div class="relative fade-up order-2 lg:order-1">
+                            <div class="relative rounded-[2rem] overflow-hidden shadow-premium aspect-[4/5]">
+                                <img src="https://img.magnific.com/free-photo/young-female-professional-doctor-physician-consulting-patient-talking-adult-man-client-medical-checkup-visit-diseases-treatment-medical-health-care-concept_657921-855.jpg?semt=ais_hybrid&w=740&q=80" alt="Medical discussion" class="object-cover w-full h-full">
+                                <div class="absolute inset-0 bg-brand-900/20 mix-blend-multiply"></div>
+                            </div>
+                            <div class="absolute top-10 -right-10 bg-white p-6 rounded-2xl shadow-premium hidden lg:block">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                                        <i class="fa-solid fa-heart-pulse"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Perawatan Penuh Kasih</h4>
+                                        <p class="text-sm text-slate-500">Dedikasi sepenuh hati</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fade-up order-1 lg:order-2">
+                            <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Keunggulan Kami</h2>
+                            <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-6 leading-tight">Kenapa Harus Memilih Ammarai Healthcare?</h3>
+                            <p class="text-slate-600 text-lg mb-10 leading-relaxed">Kami memahami bahwa kesehatan dan kenyamanan keluarga adalah segalanya. Berikut alasan mengapa layanan kami adalah pilihan tepat:</p>
+                            
+                            <ul class="space-y-6">
+                                <li class="flex items-start gap-4">
+                                    <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
+                                        <i class="fa-solid fa-check text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 mb-1">Efisiensi Biaya</h4>
+                                        <p class="text-slate-600 text-sm leading-relaxed">Biaya perawatan menjadi lebih efisien dengan opsi pasien dirawat di rumah (home care).</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
+                                        <i class="fa-solid fa-check text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 mb-1">Perencanaan Perawatan Efektif</h4>
+                                        <p class="text-slate-600 text-sm leading-relaxed">Perawatan lebih efektif berkat perencanaan yang baik dibantu oleh konsultan profesional berpengalaman.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
+                                        <i class="fa-solid fa-check text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 mb-1">Keleluasaan Waktu Keluarga</h4>
+                                        <p class="text-slate-600 text-sm leading-relaxed">Efisiensi waktu keluarga; kunjungan mendampingi pasien menjadi jauh lebih leluasa dan fleksibel.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
+                                        <i class="fa-solid fa-check text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 mb-1">Pemantauan Pasien Mudah</h4>
+                                        <p class="text-slate-600 text-sm leading-relaxed">Mempermudah keluarga memantau perkembangan perawatan pasien secara langsung setiap saat.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="mt-1 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
+                                        <i class="fa-solid fa-check text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 mb-1">Dukungan Psikologis Optimal</h4>
+                                        <p class="text-slate-600 text-sm leading-relaxed">Mempererat hubungan keluarga yang diharapkan mampu meningkatkan semangat dan motivasi kesembuhan pasien.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Layanan Section -->
+            <section id="layanan" class="py-24 bg-slate-50 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+                        <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Fasilitas Kami</h2>
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Layanan Kesehatan Terpadu</h3>
+                        <p class="text-slate-600 text-lg">Solusi medis komprehensif dengan tenaga ahli dan peralatan modern, langsung ke hadapan Anda.</p>
+                    </div>
+
+                    <!-- 12 Services Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        
+                        <!-- Service 1 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80" alt="Home Care" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-house-medical"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Home Care</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Perawatan medis intensif dan pendampingan di kenyamanan rumah Anda oleh perawat bersertifikat.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.1s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?auto=format&fit=crop&w=600&q=80" alt="Ambulance Services" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-truck-medical"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Ambulance Services</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Layanan gawat darurat dan transport medis representatif untuk domestik maupun internasional.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.2s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?auto=format&fit=crop&w=600&q=80" alt="Alat Kesehatan" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-stethoscope"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Alat Kesehatan</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Fasilitas pembelian dan penyewaan alat kesehatan modern berstandar rumah sakit untuk di rumah.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.3s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Dokter Visit" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Dokter Visit</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Kunjungan dokter (Umum & Spesialis) ke rumah untuk diagnosis presisi tanpa perlu antre di faskes.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 5 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80" alt="Laboratorium" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-flask"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Laboratorium</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Pengambilan sampel darah dan tes diagnostik langsung di rumah dengan hasil cepat & akurat.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 6 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.1s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80" alt="Apotik" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-pills"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Apotik & Obat</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Penebusan resep dan kebutuhan farmasi dengan fasilitas antar instan langsung ke rumah Anda.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 7 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.2s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Telemedicine" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-laptop-medical"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Telemedicine</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Konsultasi jarak jauh interaktif dengan dokter umum dan spesialis terpercaya via video call.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 8 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.3s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=600&q=80" alt="Medivac" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-helicopter"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Medical Evacuation</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Evakuasi medis udara & darat (Medivac) berstandar tinggi untuk rute domestik maupun internasional.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 9 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80" alt="MCU" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-file-medical"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">MCU</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Medical Check-Up komprehensif yang dirancang khusus untuk perorangan maupun paket perusahaan.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 10 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.1s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=600&q=80" alt="Multivitamin" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-syringe"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Multivitamin Booster</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Terapi infus multivitamin dan peningkat imun untuk vitalitas tubuh, langsung di rumah Anda.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 11 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.2s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" alt="Rujukan RS" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-hospital-user"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Rujukan RS</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Asistensi administrasi dan rujukan cepat ke dokter/rumah sakit rujukan domestik dan internasional.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 12 -->
+                        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 fade-up" style="transition-delay: 0.3s;">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80" alt="Healthy Food" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center text-brand-600 shadow-sm">
+                                    <i class="fa-solid fa-apple-whole"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-lg font-bold text-brand-900 mb-2">Healthy Food</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Penyediaan katering nutrisi diet klinis dan makanan sehat yang disesuaikan kondisi medis pasien.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mitra Kami Section (Marquee) -->
+            <section class="py-16 bg-white border-y border-slate-100 overflow-hidden fade-up">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-brand-900">Dipercaya Oleh Berbagai Perusahaan</h3>
+                </div>
+                
+                <div class="marquee-wrapper max-w-7xl mx-auto">
+                    <div class="marquee-content flex items-center">
+                        <!-- Original Set of Logos -->
+                        <div class="flex items-center gap-16 px-8">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Jasa_Marga_logo.svg/512px-Jasa_Marga_logo.svg.png" alt="Jasa Marga" class="h-12 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                            <!-- Using clean text placeholders with styles for logos without easy raw SVG links -->
+                            <div class="text-2xl font-black tracking-tighter text-slate-400 hover:text-blue-700 transition-colors cursor-default">FULLERTON</div>
+                            <div class="text-2xl font-bold italic text-slate-400 hover:text-red-600 transition-colors cursor-default">FIF<span class="font-light">GROUP</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-shield-cat"></i> INSURE<span class="font-light">CORP</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-building-columns"></i> MEGA<span class="font-light">BANK</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-oil-well"></i> PETRO<span class="font-light">NUSA</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-plane-departure"></i> AERO<span class="font-light">LINE</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-truck-fast"></i> LOGISTIK<span class="font-light">PRO</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-microchip"></i> TECH<span class="font-light">INDO</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-leaf"></i> AGRO<span class="font-light">MAKMUR</span></div>
+                        </div>
+                        <!-- Duplicated Set for Seamless Infinite Scroll -->
+                        <div class="flex items-center gap-16 px-8">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Jasa_Marga_logo.svg/512px-Jasa_Marga_logo.svg.png" alt="Jasa Marga" class="h-12 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                            <div class="text-2xl font-black tracking-tighter text-slate-400 hover:text-blue-700 transition-colors cursor-default">FULLERTON</div>
+                            <div class="text-2xl font-bold italic text-slate-400 hover:text-red-600 transition-colors cursor-default">FIF<span class="font-light">GROUP</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-shield-cat"></i> INSURE<span class="font-light">CORP</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-building-columns"></i> MEGA<span class="font-light">BANK</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-oil-well"></i> PETRO<span class="font-light">NUSA</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-plane-departure"></i> AERO<span class="font-light">LINE</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-truck-fast"></i> LOGISTIK<span class="font-light">PRO</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-microchip"></i> TECH<span class="font-light">INDO</span></div>
+                            <div class="text-xl font-bold text-slate-400 hover:text-brand-600 transition-colors cursor-default"><i class="fa-solid fa-leaf"></i> AGRO<span class="font-light">MAKMUR</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimoni Section -->
+            <section id="testimoni" class="py-24 bg-slate-50 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+                        <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Kisah Nyata</h2>
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Apa Kata Klien Kami?</h3>
+                        <p class="text-slate-600 text-lg">Kepercayaan ribuan keluarga dan perusahaan menjadi motivasi kami memberikan yang terbaik.</p>
+                    </div>
+
+                    <!-- Videos -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 fade-up">
+                        <div class="rounded-2xl overflow-hidden shadow-premium aspect-video bg-slate-200 border-4 border-white">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/tiQ4hDrpnKM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden shadow-premium aspect-video bg-slate-200 border-4 border-white">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/YPh0l6Z2x1E?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Client Photos -->
+                    <div class="flex flex-wrap justify-center gap-6 fade-up">
+                        
+                        <!-- Client 1 -->
+                        <div class="relative group cursor-pointer">
+                            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" class="w-full h-full object-cover">
+                            </div>
+                            <!-- Tooltip -->
+                            <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
+                                <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <p class="text-sm font-light italic leading-relaxed mb-3">"Layanan homecare Ammarai sangat membantu ibunda kami pasca stroke. Perawatnya sabar dan sangat ahli."</p>
+                                <p class="text-xs font-bold text-brand-100">- Bpk. Hendra, Jakarta</p>
+                                <!-- Triangle -->
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
+                            </div>
+                        </div>
+
+                        <!-- Client 2 -->
+                        <div class="relative group cursor-pointer">
+                            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
+                                <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <p class="text-sm font-light italic leading-relaxed mb-3">"Ambulans tiba sangat cepat. Fasilitas di dalamnya seperti mini ICU. Sangat merekomendasikan layanan evakuasi medisnya."</p>
+                                <p class="text-xs font-bold text-brand-100">- Ibu Sarah, Depok</p>
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
+                            </div>
+                        </div>
+
+                        <!-- Client 3 -->
+                        <div class="relative group cursor-pointer">
+                            <div class="w-24 h-24 -mt-2 rounded-full overflow-hidden border-4 border-brand-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10 relative">
+                                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Client 3" class="w-full h-full object-cover">
+                                <div class="absolute bottom-0 right-0 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs"><i class="fa-solid fa-quote-right"></i></div>
+                            </div>
+                            <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
+                                <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <p class="text-sm font-light italic leading-relaxed mb-3">"Telemedicine dengan dokter spesialis Ammarai sangat efektif. Resep obat langsung diantar ke rumah kurang dari 2 jam!"</p>
+                                <p class="text-xs font-bold text-brand-100">- drg. Anton, Bekasi</p>
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
+                            </div>
+                        </div>
+
+                        <!-- Client 4 -->
+                        <div class="relative group cursor-pointer">
+                            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client 4" class="w-full h-full object-cover">
+                            </div>
+                            <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
+                                <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <p class="text-sm font-light italic leading-relaxed mb-3">"Pesan Multivitamin Booster sebelum perjalanan bisnis luar negeri. Sangat praktis karena susternya yang datang ke apartemen."</p>
+                                <p class="text-xs font-bold text-brand-100">- Ibu Dina, Jaksel</p>
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
+                            </div>
+                        </div>
+
+                        <!-- Client 5 -->
+                        <div class="relative group cursor-pointer">
+                            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 group-hover:border-brand-500 transition-all duration-300">
+                                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Client 5" class="w-full h-full object-cover">
+                            </div>
+                            <div class="testi-tooltip absolute bottom-full left-1/2 mb-4 w-72 bg-brand-900 text-white p-5 rounded-2xl shadow-2xl z-20">
+                                <div class="flex text-yellow-400 text-xs mb-2 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <p class="text-sm font-light italic leading-relaxed mb-3">"Program MCU Corporate Ammarai untuk karyawan perusahaan kami berjalan mulus. Laporannya sangat komprehensif."</p>
+                                <p class="text-xs font-bold text-brand-100">- Bpk. Rizky, HR Manager</p>
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-900 rotate-45"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <p class="text-center text-sm text-slate-400 mt-6">*Arahkan kursor ke foto untuk melihat ulasan</p>
+                </div>
+            </section>
+
+            <!-- Kontak Section -->
+            <section id="kontak" class="py-24 bg-brand-900 relative">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row fade-up">
+                        
+                        <!-- Info Section -->
+                        <div class="bg-brand-600 text-white p-10 lg:p-14 lg:w-2/5 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-serif text-3xl font-bold mb-4">Mari Berdiskusi</h3>
+                                <p class="text-brand-50 opacity-90 mb-10 leading-relaxed">Butuh bantuan medis mendesak atau ingin menjadwalkan layanan kami? Tim Ammarai siap membantu Anda 24/7.</p>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <i class="fa-solid fa-location-dot mt-1 text-xl"></i>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Head Office</h4>
+                                            <p class="text-sm opacity-90 mt-1">Talavera Office Park 28th Floor<br>Jl. TB Simatupang Kav. 22-26<br>Jakarta Selatan 12430</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <i class="fa-solid fa-phone mt-1 text-xl"></i>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Telepon & Fax</h4>
+                                            <p class="text-sm opacity-90 mt-1">Telp: +62 21 7599 7994<br>Fax: +62 21 7599 9888</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <i class="fa-solid fa-headset mt-1 text-xl"></i>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Care Center / WA</h4>
+                                            <p class="text-sm opacity-90 mt-1 font-bold">0878 8888 2018</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <i class="fa-solid fa-envelope mt-1 text-xl"></i>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Email</h4>
+                                            <p class="text-sm opacity-90 mt-1">cs@ammarai.co.id</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Section -->
+                        <div class="p-10 lg:p-14 lg:w-3/5 bg-white">
+                            <h3 class="text-2xl font-bold text-brand-900 mb-6">Tulis Keluhan / Pesan</h3>
+                            
+                            <form action="https://formsubmit.co/cs@ammarai.co.id" method="POST" class="space-y-5">
+                                <input type="text" name="_honey" style="display:none">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="#"> 
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
+                                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="Nama Anda">
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Nomor Telepon / WA</label>
+                                        <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="0812...">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="email@contoh.com">
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Keluhan / Layanan yang dibutuhkan</label>
+                                    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white resize-none" placeholder="Ceritakan keluhan atau kebutuhan medis Anda di sini..."></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg shadow-lg flex items-center justify-center gap-2">
+                                    Kirim Pesan <i class="fa-solid fa-paper-plane text-sm"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- END MAIN HOME VIEW -->
+
+        <!-- TENTANG KAMI VIEW (Hidden by default, triggered by JS) -->
+        <div id="view-about" class="page-view pt-32 pb-20 bg-slate-50 min-h-screen">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <button onclick="navigate('home')" class="mb-8 inline-flex items-center gap-2 text-slate-500 hover:text-brand-600 transition-colors font-medium">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+                </button>
+
+                <!-- Company Profile -->
+                <div class="bg-white rounded-3xl shadow-premium p-8 md:p-12 mb-10">
+                    <div class="text-center mb-10">
+                        <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-3xl mx-auto mb-4 shadow-inner">
+                            <i class="fa-solid fa-building-user"></i>
+                        </div>
+                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Tentang Ammarai</h2>
+                        <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                    </div>
+                    
+                    <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
+                        <p><strong class="text-brand-900">PT Ammarai Titian Madani (Ammarai Healthcare Assistance)</strong> lahir dari filosofi bahwa rumah merupakan tempat pertama dan utama bagi keluarga dalam menjalani kehidupan yang bahagia. Kebahagiaan keluarga tidak akan tercapai jika kesehatan tidak terwujud di dalamnya.</p>
+                        <p>Berangkat dari hal tersebut, Ammarai Healthcare Assistance hadir sebagai mitra pelayanan kesehatan yang berupaya sejak dini memprioritaskan kondisi kesehatan terbaik bagi setiap anggota keluarga di rumah.</p>
+                        <p>Didirikan pada tanggal <strong>12 Desember 2012</strong>, Ammarai terus berbenah diri dan senantiasa mengembangkan pelayanan kesehatan yang lebih lengkap, responsif, solutif dan terjangkau.</p>
+                    </div>
+                </div>
+
+                <!-- Visi, Misi, Komitmen Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <!-- Visi -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 text-center hover:shadow-premium transition-shadow">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4"><i class="fa-solid fa-eye"></i></div>
+                        <h3 class="font-bold text-brand-900 text-lg mb-3">Visi Kami</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Menjadi perusahaan penyedia jasa pelayanan kesehatan yang terlengkap dan terkemuka se-Asia Tenggara.</p>
+                    </div>
+                    <!-- Misi -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 text-center hover:shadow-premium transition-shadow">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="font-bold text-brand-900 text-lg mb-3">Misi Kami</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Mengoptimalkan derajat kesehatan masyarakat semaksimal mungkin, dengan memegang teguh prinsip "TERJANGKAU dan BERKUALITAS". Menghubungkan pasien dengan institusi medis dengan MUDAH, CEPAT & TEPAT.</p>
+                    </div>
+                    <!-- Komitmen -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 text-center hover:shadow-premium transition-shadow">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4"><i class="fa-solid fa-handshake-angle"></i></div>
+                        <h3 class="font-bold text-brand-900 text-lg mb-3">Komitmen</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">AMMARAI adalah wujud komitmen dalam memberikan jasa pendampingan kesehatan. Profesional, amanah, terjangkau, dan berkualitas adalah prinsip teguh manajemen kami.</p>
+                    </div>
+                </div>
+
+                <!-- CEO Section -->
+                <div class="bg-brand-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row text-white">
+                    <div class="md:w-1/3">
+                        <img src="https://static.wixstatic.com/media/a868ea_81c04afba7ed468fbb7fb76b68db2095~mv2.jpg/v1/fill/w_689,h_358,al_c,lg_1,q_80,enc_avif,quality_auto/CEO%20page.jpg" alt="CEO Profile" class="w-full h-full object-cover min-h-[300px]">
+                    </div>
+                    <div class="md:w-2/3 p-8 md:p-10 flex flex-col justify-center">
+                        <div class="flex text-brand-500 text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Pesan CEO</h3>
+                        <p class="text-slate-300 italic leading-relaxed mb-6">
+                            "Karena setiap keluarga berhak memperoleh layanan kesehatan yang tepat, cepat, berkualitas dan terpercaya yang dapat membuatnya merasa nyaman dalam mewujudkan kehidupan keluarga yang lebih baik. Ditangani para profesional di bidangnya, kami selalu berusaha bekerja dengan penuh dedikasi dan kasih sayang."
+                        </p>
+                        <div>
+                            <p class="font-bold text-lg">Direktur Utama / CEO</p>
+                            <p class="text-brand-500 text-sm">PT Ammarai Titian Madani</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </footer>
+        <!-- END TENTANG KAMI VIEW -->
+
+        <!-- Footer Global -->
+        <footer class="bg-brand-950 pt-16 pb-8 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+                    
+                    <!-- Brand & Address -->
+                    <div class="md:col-span-5">
+                        <div class="flex items-center gap-2 mb-6 cursor-pointer" onclick="navigate('home')">
+                            <div class="w-8 h-8 bg-brand-600 rounded flex items-center justify-center text-white font-bold text-sm">
+                                <i class="fa-solid fa-notes-medical"></i>
+                            </div>
+                            <span class="font-serif font-bold text-2xl text-white tracking-tight">Ammarai<span class="text-brand-600">.</span></span>
+                        </div>
+                        
+                        <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-xs">PT Ammarai Titian Madani</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6 pr-4">
+                            Talavera Office Park 28th Floor<br>
+                            Jl. TB Simatupang No.Kav. 22 - 26, Cilandak Barat,<br>
+                            Kec. Cilandak, Kota Jakarta Selatan, Jakarta 12430
+                        </p>
+                        
+                        <div class="space-y-2 mb-6">
+                            <p class="text-slate-400 text-sm"><strong class="text-slate-300">Care Center:</strong> 0878 8888 2018</p>
+                            <p class="text-slate-400 text-sm"><strong class="text-slate-300">Telp:</strong> +62 21 7599 7994 | <strong class="text-slate-300">Fax:</strong> +62 21 7599 9888</p>
+                            <p class="text-slate-400 text-sm"><strong class="text-slate-300">Email:</strong> cs@ammarai.co.id</p>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="md:col-span-2">
+                        <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Navigasi</h4>
+                        <ul class="space-y-3">
+                            <li><button onclick="navigate('home')" class="text-slate-400 hover:text-white transition-colors text-sm">Beranda</button></li>
+                            <li><button onclick="navigate('home', 'layanan')" class="text-slate-400 hover:text-white transition-colors text-sm">Layanan Medis</button></li>
+                            <li><button onclick="navigate('about')" class="text-slate-400 hover:text-white transition-colors text-sm">Tentang Kami</button></li>
+                            <li><button onclick="navigate('home', 'kontak')" class="text-slate-400 hover:text-white transition-colors text-sm">Hubungi Kami</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Google Maps Preview -->
+                    <div class="md:col-span-5">
+                        <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Lokasi Kami</h4>
+                        <div class="w-full h-48 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-inner group relative">
+                            <!-- Embed Google Maps untuk Talavera Office Park -->
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.8153400582093!2d106.79796061476932!3d-6.287994095449272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1d063717df3%3A0x86134b121fb66f8e!2sTalavera%20Office%20Park!5e0!3m2!1sen!2sid!4v1689317520000!5m2!1sen!2sid" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="opacity-80 group-hover:opacity-100 transition-opacity">
+                            </iframe>
+                            
+                            <!-- Overlay Link Button (Untuk buka di app Map native) -->
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Talavera+Office+Park+Jakarta" target="_blank" class="absolute bottom-3 right-3 bg-brand-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg hover:bg-brand-500 transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-location-arrow"></i> Rute
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-slate-500 text-sm text-center md:text-left">
+                        &copy; 2024 PT Ammarai Titian Madani. All rights reserved.
+                    </p>
+                    <div class="flex gap-4 text-sm text-slate-500">
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- END WRAPPER UTAMA -->
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/6287888882018?text=Halo%20Ammarai,%20saya%20ingin%20bertanya%20seputar%20layanan%20kesehatan." 
